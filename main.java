@@ -32,7 +32,9 @@ class TaskManager {
             System.out.println("1) Add a new Task");
             System.out.println("2) Remove an existing Task");
             System.out.println("3) Display Tasks");
-            System.out.println("4) Quit");
+            System.out.println("4) Display Team");
+            System.out.println("5) Team Management");
+            System.out.println("6) Quit");
             choice = scan.nextInt();
             
             switch(choice) {
@@ -46,6 +48,11 @@ class TaskManager {
                 displayTasks();
                 break;
                 case 4:
+                displayTeam();
+                break;
+                case 5:
+                teamManagement();
+                case 6:
                 run = false;
                 break;
                 default:
@@ -80,5 +87,13 @@ class TaskManager {
 
     public static void displayTasks() {
         ts.displayTasks();
+    }
+
+    public static void displayTeam() {
+        
+    }
+
+    public static void teamManagement(){
+        
     }
 }
