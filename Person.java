@@ -6,6 +6,10 @@ public class Person {
         this.setName(name);
     }
 
+    public Person() {
+        this.setName("N/A");
+    }
+
     public String getName() {
         return name;
     }

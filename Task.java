@@ -6,11 +6,18 @@ public class Task {
     private Person assignee;
     private Status status;
 
-    public Task(String name, String desc, String dueDate, Person assignee, Status status) {
+    public Task(String name, String desc, String dueDate) {
+        Person n = new Person();
         this.setName(name);
         this.setDescription(desc);
         this.setDueDate(dueDate);
-        this.setAssignee(assignee);
+        this.setAssignee(n);
+        this.setStatus(new Unclaimed());
+    }
+
+    public Task() {
+        //NULL CONSTRUCTOR
+        this.setId(-1);
     }
 
     public int getId() {
@@ -37,8 +44,8 @@ public class Task {
         return status;
     }
 
-    public void generateId() {
-        //generate a new unique ID
+    public void setId(int i) {
+        id = i;
     }
 
     public void setName(String n) {
@@ -55,10 +62,15 @@ public class Task {
 
     public void setAssignee(Person a) {
         assignee = a;
+        status = new InProgress();
     }
 
-    public void completed() {
-        //changes the task's status from in-Progress to completed
+    public void setStatus(Status s) {
+        status = s;
+    }
+
+    public void complete() {
+        status = new Completed();
     }
 
 }

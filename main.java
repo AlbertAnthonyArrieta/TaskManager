@@ -19,5 +19,22 @@ class TaskManager {
     public static void main(String[] args) {
         System.out.println("Welcome to the Task Manager!");
         
+        TaskList ts = new TaskList();
+
+        Task task1 = new Task("Laundry", "Finish doing the laundry", "January 1st, 2022");
+        Task task2 = new Task("Dishes", "Clean all the dishes", "January 4th, 2022");
+        Task task3 = new Task("Trash", "Take out the trash", "January 7th, 2022");
+        Person Bob = new Person("Bob");
+        Person Alice = new Person("Alice");
+
+        ts.addTask(task1);
+        ts.addTask(task2);
+        ts.addTask(task3);
+
+        ts.getTask(2).setAssignee(Alice);
+        ts.getTask(3).setAssignee(Bob);
+        ts.getTask(2).complete();
+
+        ts.displayTasks();
     }
 }
