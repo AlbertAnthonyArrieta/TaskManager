@@ -16,25 +16,69 @@ import java.util.Scanner;
  * tasks within a project.
  */
 class TaskManager {
+    static Scanner scan = new Scanner(System.in);
+    static TaskList ts = new TaskList();
     public static void main(String[] args) {
-        System.out.println("Welcome to the Task Manager!");
+        int choice;
+        boolean run = true;
         
-        TaskList ts = new TaskList();
+        System.out.println("============================");
+        System.out.println("Welcome to the Task Manager!");
 
-        Task task1 = new Task("Laundry", "Finish doing the laundry", "January 1st, 2022");
-        Task task2 = new Task("Dishes", "Clean all the dishes", "January 4th, 2022");
-        Task task3 = new Task("Trash", "Take out the trash", "January 7th, 2022");
-        Person Bob = new Person("Bob");
-        Person Alice = new Person("Alice");
+        while(run == true) {
 
-        ts.addTask(task1);
-        ts.addTask(task2);
-        ts.addTask(task3);
+            System.out.println("============================");
+            System.out.println("Type in the number corresponding to the action you would like to do.");
+            System.out.println("1) Add a new Task");
+            System.out.println("2) Remove an existing Task");
+            System.out.println("3) Display Tasks");
+            System.out.println("4) Quit");
+            choice = scan.nextInt();
+            
+            switch(choice) {
+                case 1: 
+                addTask();
+                break;
+                case 2: 
+                removeTask();
+                break;
+                case 3: 
+                displayTasks();
+                break;
+                case 4:
+                run = false;
+                break;
+                default:
+                System.out.println("INVALID INPUT, PLEASE TRY AGAIN");
+                break;
+            }
+        }
+    }
+    
+    public static void addTask() {
+        String name;
+        String desc;
+        String dueDate;
+        System.out.println("Enter the name of task: ");
+        scan.nextLine();
+        name = scan.nextLine();
+        System.out.println("Enter the description of task: ");
+        desc = scan.nextLine();
+        System.out.println("Enter the dueDate of task: ");
+        dueDate = scan.nextLine();
+        Task t = new Task(name, desc, dueDate);
+        ts.addTask(t);
+        System.out.println("TASK CREATED!");
+    }
 
-        ts.getTask(2).setAssignee(Alice);
-        ts.getTask(3).setAssignee(Bob);
-        ts.getTask(2).complete();
+    public static void removeTask() {
+        int id;
+        System.out.println("Enter the ID of the task you would like to remove: ");
+        id = scan.nextInt();
+        ts.removeTask(id);
+    }
 
+    public static void displayTasks() {
         ts.displayTasks();
     }
 }

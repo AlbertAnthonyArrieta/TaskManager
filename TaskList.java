@@ -1,8 +1,9 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TaskList {
 
-    private ArrayList<Task> tasks = new ArrayList<Task>();
+    public ArrayList<Task> tasks = new ArrayList<Task>();
     private int idGen = 1;
 
     public TaskList(){
@@ -27,9 +28,10 @@ public class TaskList {
     }
 
     public void removeTask(int id) {
-        for (Task t : tasks) {
+        for (Iterator<Task> it = tasks.iterator(); it.hasNext(); ) {
+            Task t = it.next();
             if (t.getId() == id)
-                tasks.remove(t);
+                it.remove();
         }
     }
 
