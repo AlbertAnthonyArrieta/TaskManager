@@ -18,9 +18,14 @@ import java.util.Scanner;
 class TaskManager {
     static Scanner scan = new Scanner(System.in);
     static TaskList ts = new TaskList();
+    static Team team = new Team();
+    static boolean run = true;
     public static void main(String[] args) {
+        mainMenu();
+    }
+
+    public static void mainMenu() {
         int choice;
-        boolean run = true;
         
         System.out.println("============================");
         System.out.println("Welcome to the Task Manager!");
@@ -90,10 +95,64 @@ class TaskManager {
     }
 
     public static void displayTeam() {
-        
+        team.displayMembers();
     }
 
     public static void teamManagement(){
-        
+        int teamChoice;
+        boolean teamRun = true;
+
+        while(teamRun == true) {
+            System.out.println("============================");
+            System.out.println("TEAM MANAGEMENT");
+            System.out.println("Type in the number corresponding to the action you would like to do.");
+            System.out.println("1) Add a new Team Member");
+            System.out.println("2) Remove an existing Team Member");
+            System.out.println("3) Display Team");
+            System.out.println("4) Back to Main Menu");
+            System.out.println("5) Quit");
+            teamChoice = scan.nextInt();
+
+            switch(teamChoice) {
+                case 1: 
+                addMember();
+                break;
+                case 2: 
+                removeMember();
+                break;
+                case 3:
+                displayTeam();
+                break;
+                case 4:
+                teamRun = false;
+                mainMenu();
+                break;
+                case 5:
+                teamRun = false;
+                run = false;
+                break;
+                default:
+                System.out.println("INVALID INPUT, PLEASE TRY AGAIN");
+                break;
+            }
+
+        }
+    }
+
+    public static void addMember() {
+        String name;
+        System.out.println("Enter the name of new member: ");
+        scan.nextLine();
+        name = scan.nextLine();
+        Person m = new Person(name);
+        team.addMember(m);
+        System.out.println("NEW TEAM MEMBER ADDED!");
+    }
+
+    public static void removeMember() {
+        String name;
+        System.out.println("Enter the name of the team member you would like to remove: ");
+        name = scan.nextLine();
+        team.removeMember(name);
     }
 }
