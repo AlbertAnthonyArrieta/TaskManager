@@ -14,6 +14,12 @@ import java.util.Scanner;
  * document to keep track of who is in charge of what. I thought it would be cool to
  * create some sort of Task Manager application that keeps track of the status of
  * tasks within a project.
+ * 
+ * 
+ * TODO: 
+ * - ASSIGNING MEMBERS DONT WORK
+ * - Edit tasks/team
+ * - Error handling (empty lists)
  */
 class TaskManager {
     static Scanner scan = new Scanner(System.in);
@@ -38,8 +44,9 @@ class TaskManager {
             System.out.println("2) Remove an existing Task");
             System.out.println("3) Display Tasks");
             System.out.println("4) Display Team");
-            System.out.println("5) Team Management");
-            System.out.println("6) Quit");
+            System.out.println("5) Assign a Member to a Task");
+            System.out.println("6) Team Management");
+            System.out.println("7) Quit");
             choice = scan.nextInt();
             
             switch(choice) {
@@ -56,8 +63,11 @@ class TaskManager {
                 displayTeam();
                 break;
                 case 5:
-                teamManagement();
+                assignToTask();
+                break;
                 case 6:
+                teamManagement();
+                case 7:
                 run = false;
                 break;
                 default:
@@ -96,6 +106,20 @@ class TaskManager {
 
     public static void displayTeam() {
         team.displayMembers();
+    }
+
+    public static void assignToTask() {
+        Person m;
+        int id;
+        String name;
+        System.out.println("Enter the task id: ");
+        id = scan.nextInt();
+        System.out.println("Enter the name of the member you would like to assign for this task: ");
+        scan.nextLine();
+        name = scan.nextLine();
+        m = team.getMember(name);
+        ts.getTask(id).setAssignee(m);
+        System.out.println("MEMBER ASSIGNED TO TASK!");
     }
 
     public static void teamManagement(){

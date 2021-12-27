@@ -20,6 +20,15 @@ public class Team {
         }
     }
 
+    public Person getMember(String name) {
+        Person thisMember = new Person();
+        for (Person m : team) {
+            if (m.getName() == name)
+                thisMember = m;
+        }
+        return thisMember;
+    }
+
     public void displayMembers() {
         for (Person m : team) {
             System.out.println("===");
